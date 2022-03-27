@@ -9,7 +9,7 @@ function Portfolio() {
         <nav className='portfolio-list'>
           <h3 className='portfolio-list__heading'>Портфолио</h3>
           <li className='portfolio-list__item'>
-            <a className='portfolio-list__link' href='https://vladimirkrylov01.github.io/how-to-learn' target='_blank' rel='noopener noreferrer'>
+            <a className='portfolio-list__link' href='https://how-to-learn-nine-chi.vercel.app' target='_blank' rel='noopener noreferrer'>
               <p className='portfolio-list__item_text'>Статичный сайт</p>
               <img className='portfolio-list__item_pic' src={Arrow} alt='изображение стрелки' />
             </a>

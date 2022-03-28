@@ -17,7 +17,7 @@
 .login__heading {
 	font-weight: 500;
 	font-size: 24px;
-	line-height: 29px;
+	line-height: 29.05px;
 	margin: 40px 0 40px;
 	padding: 0;
 	box-sizing: border-box;
@@ -33,15 +33,22 @@
 	max-width: 396px;
 }
 
+.login__message {
+	margin: auto;
+	margin-bottom: 10px;
+	font-size: 13px;
+	color: #ff6838;
+}
+
 .login__input {
 	font-size: 10px;
-	line-height: 12px;
+	line-height: 12.1px;
 	color: #a0a0a0;
 	margin: 20px 0 10px;
 }
 
 .login__input:last-of-type {
-	margin: 35px 0 10px;
+	margin: 35 0 10px;
 }
 
 .login__field {
@@ -53,7 +60,7 @@
 	outline: none;
 	padding: 15px;
 	font-size: 13px;
-	line-height: 16px;
+	line-height: 15.73px;
 	box-sizing: border-box;
 }
 
@@ -73,6 +80,12 @@
 	line-height: 17px;
 	text-align: center;
 	color: #ffffff;
+}
+
+.login__form_button_disabled {
+	pointer-events: none;
+	cursor: default;
+	background-color: grey;
 }
 
 .login__form_button:hover {
@@ -110,7 +123,7 @@
 .login__input_error {
 	font-weight: 400;
 	font-size: 10px;
-	line-height: 12px;
+	line-height: 12.1px;
 	color: #ee3465;
 	display: block;
 	margin-top: 10px;

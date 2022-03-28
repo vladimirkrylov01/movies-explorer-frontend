@@ -17,7 +17,7 @@ function AboutMe() {
             </p>
             <nav className='column-social'>
               <li className='column-social__item'>
-                <a className='column-social__item-link' href='https://www.facebook.com' target='_blank' rel='noopener noreferrer'>Facebook</a></li>
+                <a className='column-social__item-link' href='https://www.facebook.com/profile.php?id=100006475123020' target='_blank' rel='noopener noreferrer'>Facebook</a></li>
               <li className='column-social__item'><a className='column-social__item-link' href='https://github.com/vladimirkrylov01' target='_blank' rel='noopener noreferrer'>GitHub</a></li>
             </nav>
           </div>

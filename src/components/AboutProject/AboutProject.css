@@ -21,8 +21,8 @@
 	font-weight: 400;
 	font-style: normal;
 	font-size: 22px;
-	line-height: 26px;
-	/*letter-spacing: -4%;*/
+	line-height: 26.36px;
+	letter-spacing: -4%;
 	border-bottom: 1px solid #000;
 	padding-bottom: 23px;
 	margin-bottom: 75px;
@@ -46,8 +46,8 @@
 
 .project-list__heading {
 	font-size: 20px;
-	line-height: 24px;
-	/*letter-spacing: 4%;*/
+	line-height: 24.2px;
+	letter-spacing: -4%;
 	color: #000000;
 	font-weight: 400;
 	margin: 0;
@@ -76,7 +76,7 @@
 	padding: 9px 0;
 	font-weight: 400;
 	font-size: 14px;
-	line-height: 17px;
+	line-height: 16.94px;
 	text-align: center;
 	margin: 0;
 	box-sizing: border-box;
@@ -148,12 +148,12 @@
 @media screen and (max-width: 320px) {
 	.project-list__heading {
 		font-size: 18px;
-		line-height: 22px;
+		line-height: 21.7px;
 	}
 
 	.project-block {
 		font-size: 11px;
-		line-height: 13px;
+		line-height: 13.31px;
 	}
 
 	.project-block_type_text {
@@ -164,7 +164,7 @@
 		font-weight: 400;
 		font-style: normal;
 		font-size: 18px;
-		line-height: 22px;
+		line-height: 21.78px;
 	}
 
 	.project-list__text {

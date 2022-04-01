@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, Redirect, useHistory } from 'react-router-dom';
-import { Route } from 'react-router';
+import { Route } from 'react-router-dom';
 import './App.css';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
@@ -25,34 +25,34 @@ function App() {
   const [isShortSavedMovie, setIsShortSavedMovie] = React.useState(false);
   const [isSearched, setIsSearched] = React.useState(false);
   const [message, setMessage] = React.useState(null);
-
+  
   const [isShortMovieButton, setIsShortMovieButton] = React.useState(
     localStorage.getItem('isShortMovieButton')
-    ? JSON.parse(localStorage.getItem('isShortMovieButton'))
-    : false);
-
+      ? JSON.parse(localStorage.getItem('isShortMovieButton'))
+      : false);
+  
   const [isShortSavedMovieButton, setIsShortSavedMovieButton] = React.useState(
     localStorage.getItem('isShortSavedMovieButton')
-    ? JSON.parse(localStorage.getItem('isShortSavedMovieButton'))
-    : false);
-
-    let initialCardsValue;
-    if (JSON.parse(localStorage.getItem('isShortMovieButton'))) {
-      if (localStorage.getItem('searchedCards')) {
-        initialCardsValue = JSON.parse(localStorage.getItem('searchedCards')).filter((item) => item.duration < 40)
-      } else {
-        initialCardsValue = [];}
+      ? JSON.parse(localStorage.getItem('isShortSavedMovieButton'))
+      : false);
+  
+  let initialCardsValue;
+  if (JSON.parse(localStorage.getItem('isShortMovieButton'))) {
+    if (localStorage.getItem('searchedCards')) {
+      initialCardsValue = JSON.parse(localStorage.getItem('searchedCards')).filter((item) => item.duration < 40)
     } else {
-      if (localStorage.getItem('searchedCards')) {
-        initialCardsValue = JSON.parse(localStorage.getItem('searchedCards'))
-      } else {
-        initialCardsValue = [];}
-    }
-
+      initialCardsValue = [];}
+  } else {
+    if (localStorage.getItem('searchedCards')) {
+      initialCardsValue = JSON.parse(localStorage.getItem('searchedCards'))
+    } else {
+      initialCardsValue = [];}
+  }
+  
   const [cards, setCards] = React.useState(initialCardsValue);
-
+  
   let initialSavedCardsValue;
-
+  
   if (JSON.parse(localStorage.getItem('isShortSavedMovieButton'))) {
     if (localStorage.getItem('savedMovies')) {
       initialSavedCardsValue = JSON.parse(localStorage.getItem('savedMovies')).filter((item) => item.duration < 40)
@@ -64,14 +64,14 @@ function App() {
     } else {
       initialSavedCardsValue = [];}
   }
-
+  
   const [savedMovies, setSavedMovies] = React.useState(initialSavedCardsValue);
-
+  
   const [currentUser, setCurrentUser] = React.useState({
     name: '',
     email: '',
   });
-
+  
   // React.useEffect(() => {
   //   if (loggedIn) {
   //     mainApi
@@ -83,7 +83,7 @@ function App() {
   //       .catch((err) => console.log(err));
   //   }
   // }, [loggedIn]);
-
+  
   const checkToken = React.useCallback(() => {
     auth
       .checkToken()
@@ -94,11 +94,11 @@ function App() {
       .catch((err) => console.log(err))
       .finally(() => setIsLoading(false));
   }, [loggedIn, history]);
-
+  
   React.useEffect(() => {
     checkToken();
   }, [checkToken]);
-
+  
   React.useEffect(() => {
     if (loggedIn) {
       setIsLoading(true);
@@ -110,12 +110,12 @@ function App() {
         .finally(() => setIsLoading(false));
     }
   }, [loggedIn]);
-
+  
   function showMessage(message) {
     setMessage(message);
     setTimeout(() => setMessage(''), 10000);
   }
-
+  
   function handleRegister(data) {
     setIsLoading(true);
     auth
@@ -133,10 +133,10 @@ function App() {
         }
         console.log(err);
       })
-      .finally(() => 
-      setIsLoading(false));
+      .finally(() =>
+        setIsLoading(false));
   }
-
+  
   function handleLogin(data) {
     setIsLoading(true);
     auth
@@ -157,10 +157,10 @@ function App() {
         }
         console.log(err);
       })
-      .finally(() => 
-      setIsLoading(false));
+      .finally(() =>
+        setIsLoading(false));
   }
-
+  
   function handleLogout() {
     auth
       .signOut()
@@ -177,7 +177,7 @@ function App() {
         console.error(err);
       });
   }
-
+  
   function handleUpdateUser({ email, name }) {
     setIsLoading(true);
     mainApi
@@ -197,10 +197,10 @@ function App() {
         }
         console.log(err);
       })
-      .finally(() => 
-      setIsLoading(false));
+      .finally(() =>
+        setIsLoading(false));
   }
-
+  
   function handleSaveMovie(card) {
     mainApi
       .saveMovie(card)
@@ -212,7 +212,7 @@ function App() {
         console.error(err);
       });
   }
-
+  
   function deleteMovie(card) {
     const movie = savedMovies.filter((item) => item.nameRU.toLowerCase() === card.nameRU.toLowerCase());
     mainApi
@@ -225,7 +225,7 @@ function App() {
         console.error(err);
       });
   }
-
+  
   function handleSubmit(searchValue, isSaved) {
     if (!isSearched) {
       setIsLoading(true);
@@ -236,26 +236,26 @@ function App() {
             if (isSaved === true) {
               isShortSavedMovie
                 ? setSavedMovies(
-                    JSON.parse(localStorage.getItem('savedMovies'))?.filter((item) => {
-                      return item.duration < 40 && item.nameRU.toLowerCase().includes(searchValue.trim().toLowerCase());
-                    })
-                  )
+                  JSON.parse(localStorage.getItem('savedMovies'))?.filter((item) => {
+                    return item.duration < 40 && item.nameRU.toLowerCase().includes(searchValue.trim().toLowerCase());
+                  })
+                )
                 : setSavedMovies(
-                    JSON.parse(localStorage.getItem('savedMovies'))?.filter((item) => {
-                      return item.nameRU.toLowerCase().includes(searchValue.trim().toLowerCase());
-                    })
-                  );
+                  JSON.parse(localStorage.getItem('savedMovies'))?.filter((item) => {
+                    return item.nameRU.toLowerCase().includes(searchValue.trim().toLowerCase());
+                  })
+                );
             } else {
               localStorage.setItem('searchedCards', JSON.stringify(data.filter((item) => {
-                return item.nameRU.toLowerCase().includes(searchValue.trim().toLowerCase());
-              })
-            )
-          );
-          setCards(
-            data.filter((item) => {
-              return item.nameRU.toLowerCase().includes(searchValue.trim().toLowerCase());
-            })
-          );
+                    return item.nameRU.toLowerCase().includes(searchValue.trim().toLowerCase());
+                  })
+                )
+              );
+              setCards(
+                data.filter((item) => {
+                  return item.nameRU.toLowerCase().includes(searchValue.trim().toLowerCase());
+                })
+              );
             }
             setInitialCards(data);
           })
@@ -267,21 +267,21 @@ function App() {
         console.log(err);
       });
     }
-
+    
     setIsSearchedSavedMovie(searchValue);
-
+    
     if (isSaved === true) {
       isShortSavedMovie
         ? setSavedMovies(
-            JSON.parse(localStorage.getItem('savedMovies'))?.filter((item) => {
-              return item.duration < 40 && item.nameRU.toLowerCase().includes(searchValue.trim().toLowerCase());
-            })
-          )
+          JSON.parse(localStorage.getItem('savedMovies'))?.filter((item) => {
+            return item.duration < 40 && item.nameRU.toLowerCase().includes(searchValue.trim().toLowerCase());
+          })
+        )
         : setSavedMovies(
-            JSON.parse(localStorage.getItem('savedMovies'))?.filter((item) => {
-              return item.nameRU.toLowerCase().includes(searchValue.trim().toLowerCase());
-            })
-          );
+          JSON.parse(localStorage.getItem('savedMovies'))?.filter((item) => {
+            return item.nameRU.toLowerCase().includes(searchValue.trim().toLowerCase());
+          })
+        );
     } else {
       localStorage.setItem('searchedCards', JSON.stringify(initialCards.filter((item) => {
             return item.nameRU.toLowerCase().includes(searchValue.trim().toLowerCase());
@@ -296,9 +296,9 @@ function App() {
     }
     setIsSearched(true);
   }
-
+  
   function isShortMovie(value, isSaved) {
-
+    
     if (isSaved) {
       setIsShortSavedMovieButton(value);
       localStorage.setItem('isShortSavedMovieButton', value);
@@ -306,7 +306,7 @@ function App() {
       setIsShortMovieButton(value);
       localStorage.setItem('isShortMovieButton', value);
     }
-
+    
     setIsShortSavedMovie(value);
     if (isSaved === true) {
       if (isSearchedSavedMovie) {
@@ -320,18 +320,18 @@ function App() {
       value ? setCards(JSON.parse(localStorage.getItem('searchedCards'))?.filter((item) => item.duration < 40)) : setCards(JSON.parse(localStorage.getItem('searchedCards'))?.filter((item) => item.duration > 0));
     }
   }
-
+  
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <>
         <Switch>
-
+          
           <Route
-          path='/' exact>
+            path='/' exact>
             <Main
-            loggedIn={loggedIn} />
+              loggedIn={loggedIn} />
           </Route>
-
+          
           <ProtectedRoute
             path='/movies'
             component={Movies}
@@ -346,7 +346,7 @@ function App() {
             isShortMovieButton={isShortMovieButton}
             savedMovies={savedMovies}
           />
-
+          
           <ProtectedRoute
             path='/saved-movies'
             component={SavedMovies}
@@ -359,44 +359,44 @@ function App() {
             isShortSavedMovieButton={isShortSavedMovieButton}
             savedMovies={savedMovies}
           />
-
-          <ProtectedRoute 
-           path='/profile'
-           component={Profile}
-           isLoading={isLoading}
-           onUpdateUser={handleUpdateUser}
-           loggedIn={loggedIn}
-           message={message}
-           onSignout={handleLogout}
-           />
-
-          <Route
-          path='/signup'>
-            {!loggedIn 
-            ? <Register
+          
+          <ProtectedRoute
+            path='/profile'
+            component={Profile}
+            isLoading={isLoading}
+            onUpdateUser={handleUpdateUser}
+            loggedIn={loggedIn}
             message={message}
-            isLoading={isLoading}
-            onRegister={handleRegister} />
-            : <Redirect
-            to='/movies' />}
-            </Route>
-
+            onSignout={handleLogout}
+          />
+          
           <Route
-          path='/signin'>
+            path='/signup'>
             {!loggedIn
-            ? <Login
-            onLogin={handleLogin}
-            isLoading={isLoading}
-            message={message} />
-            : <Redirect
-            to='/movies' />}
-            </Route>
-
+              ? <Register
+                message={message}
+                isLoading={isLoading}
+                onRegister={handleRegister} />
+              : <Redirect
+                to='/movies' />}
+          </Route>
+          
           <Route
-          path='*'>
+            path='/signin'>
+            {!loggedIn
+              ? <Login
+                onLogin={handleLogin}
+                isLoading={isLoading}
+                message={message} />
+              : <Redirect
+                to='/movies' />}
+          </Route>
+          
+          <Route
+            path='*'>
             <NotFound />
           </Route>
-
+        
         </Switch>
       </>
     </CurrentUserContext.Provider>

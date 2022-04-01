@@ -48,7 +48,7 @@ return fetch(`${BASE_URL}/users/me`, {
 
 export const signOut = () => {
   return fetch(`${BASE_URL}/signout`, {
-    method: 'DELETE',
+    method: 'GET',
     credentials: 'include',
   })
   .then(checkResponse)

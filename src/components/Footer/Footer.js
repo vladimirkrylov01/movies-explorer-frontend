@@ -10,7 +10,7 @@ function Footer() {
         </div>
 
         <div className='footer__block_content'>
-          <p className='footer__copyright'>&copy; 2022</p>
+          <p className='footer__copyright'>&copy; 2021</p>
 
           <nav className='footer__links'>
             <li className='footer__links_item'>

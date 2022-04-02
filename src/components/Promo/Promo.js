@@ -11,6 +11,6 @@ function Promo() {
     </div>
     </div>
   );
-}
+};
 
 export default Promo;
